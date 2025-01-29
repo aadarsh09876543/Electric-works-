@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Aadarsh Sales Services</title>
+    <style>
+        body { 
+            background-image: url(https://images.unsplash.com/photo-1565608438257-fac3c27beb36?q=80&w=1476&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D);
+            background-size: cover;     
+            background-repeat: no-repeat; 
+            background-attachment: fixed; 
+            font-family: Arial, sans-serif;
+            color: #333;
+        }
+        .container {
+            max-width: 600px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+        }
+        h1 {
+            text-align: center;
+            color: #444;
+        }
+        .services {
+            list-style: none;
+            padding: 0;
+        }
+        .services li {
+            background: #f9f9f9;
+            margin: 10px 0;
+            padding: 10px;
+            border-radius: 5px;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+        }
+        .contact-info {
+            text-align: center;
+            margin-top: 20px;
+        }
+        label {
+            display: block;
+            margin: 15px 0 5px;
+        }
+        input, textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        button {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            background-color: #28a745;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #218838;
+        }
+        .confirmation-message {
+            display: none;
+            color: green;
+            text-align: center;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body> 
+    <div class="container">
+        <h1>Hello, I'm Shailendre Pandey</h1>
+        <p>Here's the list of services I offer:</p>
+        <ul class="services">
+            <li>Electricals</li>
+            <li>Plumbing</li>
+            <li>Painting</li>
+            <li>Carpentry</li>
+            <li>Mechanical</li>
+        </ul>
+        <p class="contact-info">I'm a professional in all these works and I have a team of professional workers who are experts in their work. If you have any work related to these fields, you can contact me on my phone number: <strong>7972666974</strong>.</p>
+
+        <h1>Request Work</h1>
+        <form id="workRequestForm">
+            <label for="name">Your Name:</label>
+            <input type="text" id="name" name="name" required>
+            
+            <label for="phone">Your Phone Number:</label>
+            <input type="tel" id="phone" name="phone" required>
+            
+            <label for="work">Type of Work:</label>
+            <textarea id="work" name="work" rows="4" required></textarea>
+            
+            <button type="submit">Submit Request</button>
+        </form>
+        <p id="confirmationMessage" class="confirmation-message">Your request has been submitted successfully!</p>
+    </div>
+
+    <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
+    <script>
+        (function(){
+            emailjs.init("YOUR_USER_ID"); // Replace 'YOUR_USER_ID' with your actual user ID from EmailJS
+        })();
+
+        document.getElementById('workRequestForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            emailjs.sendForm('YOUR_SERVICE_ID', 'YOUR_TEMPLATE_ID', this)
+                .then(function() {
+                    document.getElementById('confirmationMessage').style.display = 'block';
+                }, function(error) {
+                    console.log('FAILED...', error);
+                });
+        });
+    </script>
+</body>
+</html>
